@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Badge, Calendar} from "antd";
+import {Calendar} from "antd";
 import {IEvent} from "../models/models";
 import {Dayjs} from "dayjs";
 import {formatDate} from "../utils/utils";
