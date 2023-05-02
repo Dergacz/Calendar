@@ -1,18 +1,18 @@
 import {Dispatch} from "@reduxjs/toolkit";
 import {authSlice} from "./auth";
-import axios from "axios";
 import {IUser} from "../../../models/models";
+import api from "../../../api/api";
 
 export const login = (username: string, password: string) => async (dispatch: Dispatch) => {
     try {
         dispatch(authSlice.actions.setLoading(true));
-        const response = await axios.get<IUser[]>('./users.json');
+        const response = await api.getUsers();
         const mockUsers = response.data.find(user => user.username === username && user.password === password);
         if (mockUsers) {
             localStorage.setItem('auth', 'true');
             localStorage.setItem('username', mockUsers.username);
-            dispatch(authSlice.actions.setAuth(true));
             dispatch(authSlice.actions.setUser(mockUsers));
+            dispatch(authSlice.actions.setAuth(true));
         } else {
             dispatch(authSlice.actions.setError('Uncorrected login or password'))
         }

@@ -8,7 +8,6 @@ interface IAuth {
     error: string;
 }
 
-
 const initialState: IAuth = {
     isAuth: false,
     error: '',
